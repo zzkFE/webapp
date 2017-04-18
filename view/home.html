@@ -1,0 +1,166 @@
+<div class="home-view">
+	<div class="view-header">
+		<span>
+			<span id="home-view-home">首页</span>
+			<span class="disabled" id="home-view-tj">推荐</span>
+		</span>
+	</div>
+	<div class="view-content">
+		<div class="home-view-home active">
+			<div class="banner-view">
+				<div class="banner">
+					<div class="banner-list">
+						<img src="static/images/game-img-2.png"/>
+					</div>
+					<div class="banner-list">
+						<img src="static/images/game-img-3.png"/>
+					</div>
+					<div class="banner-list">
+						<img src="static/images/game-img-4.png"/>
+					</div>
+					<div class="banner-list">
+						<img src="static/images/game-img-5.png"/>
+					</div>
+				</div>
+				<div class="banner-icon">
+					<span class="banner-icon-btn"></span>
+					<span class="banner-icon-btn"></span>
+					<span class="banner-icon-btn"></span>
+					<span class="banner-icon-btn"></span>
+				</div>
+			</div>
+
+			<div class="home-btn">
+				<div class="piaowu">
+					热门门票
+					<i class="fa fa-newspaper-o fa-fw pull-right"></i>
+				</div>
+				<div class="xianlu">
+					旅游线路推荐
+					<i class="fa fa-plane fa-fw pull-right"></i>
+				</div>
+			</div>
+		</div>
+
+		<div class="home-view-tj">
+			<div class="home-view-tj-list">
+				<img src="static/images/game-img-2.png">
+				<div class="tj-info">
+					<div class="tj-info-title">英雄联盟游戏</div>
+					<div class="tj-info-content">英雄联盟游戏英雄联盟游戏</div>
+				</div>
+			</div>
+			<div class="home-view-tj-list">
+				<img src="static/images/game-img-3.png">
+				<div class="tj-info">
+					<div class="tj-info-title">英雄联盟游戏</div>
+					<div class="tj-info-content">英雄联盟游戏英雄联盟游戏</div>
+				</div>
+			</div>
+			<div class="home-view-tj-list">
+				<img src="static/images/game-img-4.png">
+				<div class="tj-info">
+					<div class="tj-info-title">英雄联盟游戏</div>
+					<div class="tj-info-content">英雄联盟游戏英雄联盟游戏</div>
+				</div>
+			</div>
+			<div class="home-view-tj-list">
+				<img src="static/images/game-img-5.png">
+				<div class="tj-info">
+					<div class="tj-info-title">英雄联盟游戏</div>
+					<div class="tj-info-content">英雄联盟游戏英雄联盟游戏</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	(function(){
+		//切换显示状态
+		$("#home-view-home").on("click",function(){
+			$(this).removeClass('disabled').siblings().addClass('disabled');
+			$(".home-view-home").addClass('active');
+			$(".home-view-tj").removeClass('active');
+		});
+		$("#home-view-tj").on("click",function(){
+			$(this).removeClass('disabled').siblings().addClass('disabled');
+			$(".home-view-tj").addClass('active');
+			$(".home-view-home").removeClass('active');
+		});
+
+	})();
+
+	//列表滚动
+	(function(){
+		var bannerLen = $(".banner-view .banner .banner-list").length;
+		var setBannerWidth= function(){
+			$(".banner-view .banner").css({
+				"width":bannerLen*($(window).width()+5)
+			})
+			$(".banner-view .banner .banner-list").css({
+				"width":$(window).width()
+			})
+		};
+		setBannerWidth();
+		$(window).on("resize",function(){
+			setBannerWidth();
+		})
+		var curreneScroll=0;
+		var scrollDirection = 1; //1前进 0后退
+		var scrollbanner=function(){
+			$(".banner-view .banner").css({
+				"margin-left":-($(window).width()+5)*curreneScroll
+			})
+			$(".banner-view .banner-icon .banner-icon-btn").eq(curreneScroll).addClass('active').siblings(".banner-icon-btn").removeClass('active');
+		}
+		scrollbanner();
+		var scrollTimer=null;
+		var startTimer=function(){
+			clearInterval(scrollTimer);
+			scrollTimer= setInterval(function(){
+				if(scrollDirection==1){
+					if(curreneScroll >= bannerLen-1){
+						scrollDirection=0;
+						curreneScroll--;
+					}
+					else{
+						curreneScroll++;
+					}
+				}
+				else{
+					if(curreneScroll <= 0){
+						scrollDirection=1;
+						curreneScroll++;
+					}
+					else{
+						curreneScroll--;
+					}
+				}
+				scrollbanner();
+			},3500);
+		}
+		startTimer();
+		$(".banner-view .banner").on("swipeLeft",function(){
+			if(curreneScroll<bannerLen-1){
+				clearInterval(scrollTimer);
+				curreneScroll++;
+				scrollbanner();
+				setTimeout(function(){
+					startTimer();
+				}, 700);
+			}
+		});
+		$(".banner-view .banner").on("swipeRight",function(){
+			if(curreneScroll>0){
+				clearInterval(scrollTimer);
+				curreneScroll--;
+				scrollbanner();
+				setTimeout(function(){
+					startTimer();
+				}, 700);
+			}
+		});
+	})();
+
+</script>

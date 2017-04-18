@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+   	<meta name="viewport" content="width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="renderer" content="webkit">
+	<title>西安昊天传媒</title>
+	<link rel="stylesheet" type="text/css" href="static/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="static/css/app.css">
+	<style type="text/css">
+		.view-header{
+			background: none;
+		}
+		.app-conatiner{
+			bottom:55px;
+		}
+	</style>
+</head>
+<body>
+	<div class="app-content">
+		<div class="app-conatiner">
+			<div class="goods-view" style="display:block;">
+				<div class="view-header">
+					<span class="icon-left">
+						<i class="fa fa-fw fa-angle-left"></i>
+					</span>
+				</div>
+				<div class="view-content">
+					<div class="goods-img">
+						<div class="banner-view">
+							<div class="banner" style="width: 1676px; margin-left: -838px;">
+								<div class="banner-list" style="width: 414px;">
+									<img src="static/images/game-img-2.png">
+								</div>
+								<div class="banner-list" style="width: 414px;">
+									<img src="static/images/game-img-3.png">
+								</div>
+								<div class="banner-list" style="width: 414px;">
+									<img src="static/images/game-img-4.png">
+								</div>
+								<div class="banner-list" style="width: 414px;">
+									<img src="static/images/game-img-5.png">
+								</div>
+							</div>
+							<div class="banner-icon">
+								<span class="banner-icon-btn"></span>
+								<span class="banner-icon-btn"></span>
+								<span class="banner-icon-btn active"></span>
+								<span class="banner-icon-btn"></span>
+							</div>
+						</div>
+					</div>
+					<div class="goods-content">
+						<div class="goods-title">
+							西安秦岭野生动物园学生指定日票（含国家法定节假日）
+						</div>
+						<div class="goods-price">
+							¥ 80.00
+						</div>
+						<div class="goods-price-old">
+							 ¥ 100.00 
+						</div>
+						
+					</div>
+					<div class="goods-info">
+						<img src="./static/images/game-img-2.png">
+						<img src="./static/images/game-img-3.png">
+						<img src="./static/images/game-img-4.png">
+						<img src="./static/images/game-img-5.png">
+					</div>
+				</div>
+				<div class="view-fixed">
+					<div class="service"><i class="fa fa-commenting-o fa-fw"></i><br/>客服</div>
+					<div class="buynow">立即购买</div>
+				</div>
+			</div>
+			<span class="copyright">
+				<i class="fa fa-yelp"></i><br/>西安昊天传媒 版权所有 2017
+			</span>
+		</div>
+	</div>
+	<div id="servicecode">
+		<img src="./static/images/code.jpg">
+	</div>
+	<script type="text/javascript" src="static/js/zepto.min.js"></script>
+	<script type="text/javascript" src="static/js/app.js"></script>
+
+	<script>
+		$(function(){
+			$(".service,.buynow").on("tap",function(){
+				$("#servicecode").fadeIn(300);
+			})
+			$("#servicecode").on("tap",function(){
+				$(this).fadeOut(300);
+			})
+			$("#servicecode img").on("tap",function(e){
+				e.stopPropagation();
+				return false;
+			})
+		})
+	</script>
+</body>
+</html>
